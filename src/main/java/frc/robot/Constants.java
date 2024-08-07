@@ -29,4 +29,10 @@ public final class Constants {
     public static final int kDriverControllerPort = 0;
 
   }
+
+  public static final class AngulationMotors{
+    public static final int Left = 12;
+    public static final int Right = 13;
+
+  } 
 }
