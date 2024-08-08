@@ -21,18 +21,16 @@ public final class Constants {
     public static final int RightSlave = 4;
   }
   public static final class ShooterMotors{
-    public static final int Left = 10;
-    public static final int Right = 11;
+    public static final int Left = 7;
+    public static final int Right = 9;
   }
 
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
-
+    public static final int kSubsystemControllerPort = 1;
   }
-
   public static final class AngulationMotors{
-    public static final int Left = 12;
-    public static final int Right = 13;
+    public static final int Right = 5;
 
   } 
 }

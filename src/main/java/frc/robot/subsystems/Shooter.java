@@ -4,33 +4,39 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.motorcontrol.Victor;
+import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  private CANSparkMax LeftMotor = new CANSparkMax(Constants.ShooterMotors.Left , MotorType.kBrushed);
-  private CANSparkMax RightMotor = new CANSparkMax(Constants.ShooterMotors.Left , MotorType.kBrushed);
+  private WPI_TalonSRX LeftMotor = new WPI_TalonSRX(Constants.ShooterMotors.Left);
+  
+  private WPI_VictorSPX RightMotor = new WPI_VictorSPX(Constants.ShooterMotors.Right);
 
   private Servo servo = new Servo(8);
 
   public Shooter() {
+    RightMotor.follow(LeftMotor);
+
     LeftMotor.setInverted(false);
     RightMotor.setInverted(true);
   }
 
   public void setLeftMotor(double speed){
-    LeftMotor.set(speed);
-  }
-  public void setRightMotor(double speed){
-    RightMotor.set(speed);
-  }
+    LeftMotor.set(ControlMode.PercentOutput, speed); }
+  
   public void setMotors(double speed){
     setLeftMotor(speed);
-    setRightMotor(speed);
   }
   public void setServo(double angle){
     servo.setAngle(angle);

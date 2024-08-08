@@ -29,12 +29,12 @@ public class AutoSlopeTime extends Command {
 
   @Override
   public void execute() {
-    angulation.setMotors(power);
+    angulation.setMotor(power);
   }
 
   @Override
   public void end(boolean interrupted) {
-    angulation.setMotors(0);
+    angulation.setMotor(0);
   }
 
   @Override

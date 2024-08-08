@@ -10,22 +10,19 @@ import frc.robot.subsystems.Shooter;
 
 public class BasicShoot extends Command {
   private final Shooter shooter;
-  private final Timer timer;
 
   public BasicShoot(Shooter Shooter) {
     this.shooter = Shooter;
-    this.timer = new Timer();
     addRequirements(Shooter);
   }
 
   @Override
   public void initialize() {
-    timer.restart();
   }
 
   @Override
   public void execute() {
-    shooter.setMotors(0.8);
+    shooter.setMotors(0.9);
   }
 
   @Override
@@ -35,6 +32,6 @@ public class BasicShoot extends Command {
 
   @Override
   public boolean isFinished() {
-    return timer.get() >= 2.0;
+    return false;
   }
 }

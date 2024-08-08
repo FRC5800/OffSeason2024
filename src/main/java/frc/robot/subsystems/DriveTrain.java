@@ -8,12 +8,15 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.vision.VisionThread;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
+import edu.wpi.first.wpilibj.motorcontrol.Victor;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
-  /** Creates a new DriveTrain. */
+  /** Creates a new DriveTra  in. */
   private WPI_TalonSRX LeftMaster = new WPI_TalonSRX(1);
   private WPI_TalonSRX RightMaster = new WPI_TalonSRX(2);
   private WPI_VictorSPX LeftSlave = new WPI_VictorSPX(3);
@@ -25,18 +28,18 @@ public class DriveTrain extends SubsystemBase {
     LeftSlave.follow(LeftMaster);
     RightSlave.follow(RightMaster);
 
-    RightMaster.setInverted(false);
-    LeftMaster.setInverted(false);
+    RightMaster.setInverted(true);
+    LeftMaster.setInverted(true);
 
-    RightSlave.setInverted(false);
-    LeftSlave.setInverted(false);
+    RightSlave.setInverted(true);
+    LeftSlave.setInverted(true);
 
-    LeftMaster.setNeutralMode(NeutralMode.Brake);
+  /*   LeftMaster.setNeutralMode(NeutralMode.Brake);
     RightMaster.setNeutralMode(NeutralMode.Brake);
     LeftSlave.setNeutralMode(NeutralMode.Brake);
     RightSlave.setNeutralMode(NeutralMode.Brake);
 
-    
+    */
   }
 
   public void drive(XboxController mainController){
@@ -44,13 +47,17 @@ public class DriveTrain extends SubsystemBase {
     double Yspeed = 0;
 
     if (Math.abs(mainController.getRightX()) > 0.2){
-      Xspeed = mainController.getRightX()*0.8;
+      Xspeed = mainController.getRightX()*1;
     }
     if (Math.abs(mainController.getLeftY()) > 0.2){
-      Yspeed = mainController.getLeftY()*0.8;
+      Yspeed = mainController.getLeftY()*1;
     }
 
     diffDrive.arcadeDrive(Xspeed, Yspeed);    
+  }
+
+  public void setMotors(double speed){
+    diffDrive.arcadeDrive(speed, speed);
   }
 
   @Override
