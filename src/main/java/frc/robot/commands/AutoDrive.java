@@ -30,14 +30,14 @@ public class AutoDrive extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.setMotors(0.9);
+  driveTrain.autoDrive(1);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     timer.stop();
-    driveTrain.setMotors(0);
+    driveTrain.autoDrive(0);
   }
 
   // Returns true when the command should end.

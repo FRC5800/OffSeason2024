@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Auto1;
+import frc.robot.commands.AutoDrive;
 import frc.robot.commands.AutoSlopeTime;
 import frc.robot.commands.BasicShoot;
 import frc.robot.commands.Drive;
@@ -37,14 +38,15 @@ public class RobotContainer {
 
     driveTrain.setDefaultCommand(new Drive(driveTrain, driverController));
 
-    new JoystickButton(subsystemController, PS4Controller.Button.kCross.value).whileTrue(new Take(intake, true));
+    new JoystickButton(driverController, XboxController.Button.kA.value).onTrue(new AutoDrive(driveTrain, 2));
+    /*new JoystickButton(subsystemController, PS4Controller.Button.kCross.value).whileTrue(new Take(intake, true));
     new JoystickButton(subsystemController, PS4Controller.Button.kCircle.value).whileTrue(new Take(intake, false));
     new JoystickButton(subsystemController, PS4Controller.Button.kSquare.value).whileTrue(new BasicShoot(shooter));
    new JoystickButton(subsystemController, PS4Controller.Button.kL1.value).onTrue(new AutoSlopeTime(angulation, 0.8, 1));
-    new JoystickButton(subsystemController, PS4Controller.Button.kR1.value).onTrue(new AutoSlopeTime(angulation, -0.8, 1));
+    new JoystickButton(subsystemController, PS4Controller.Button.kR1.value).onTrue(new AutoSlopeTime(angulation, -0.8, 1));*/
   }
 
   public Command getAutonomousCommand() {
-    return null; //new Auto1(driveTrain, shooter);
+    return new AutoDrive(driveTrain, 2);
   }
 }

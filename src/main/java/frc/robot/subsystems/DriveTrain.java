@@ -33,13 +33,6 @@ public class DriveTrain extends SubsystemBase {
 
     RightSlave.setInverted(true);
     LeftSlave.setInverted(true);
-
-  /*   LeftMaster.setNeutralMode(NeutralMode.Brake);
-    RightMaster.setNeutralMode(NeutralMode.Brake);
-    LeftSlave.setNeutralMode(NeutralMode.Brake);
-    RightSlave.setNeutralMode(NeutralMode.Brake);
-
-    */
   }
 
   public void drive(XboxController mainController){
@@ -56,9 +49,11 @@ public class DriveTrain extends SubsystemBase {
     diffDrive.arcadeDrive(Xspeed, Yspeed);    
   }
 
-  public void setMotors(double speed){
-    diffDrive.arcadeDrive(speed, speed);
+  public void autoDrive(double speed){
+    LeftMaster.set(speed);
+    RightMaster.set(-speed);
   }
+
 
   @Override
   public void simulationPeriodic() {
